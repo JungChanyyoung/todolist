@@ -1,10 +1,27 @@
 import React, { useEffect, useState } from "react";
 
 export const TodolistSave = () => {
-  const [todo, setTodo] = useState();
+  const [todo, setTodo] = useState([]);
 
   const handleInpoutChange = (event) => {
     setTodo(event.target.value);
+  };
+
+  useEffect(() => {
+    const storedTodo = localStorage.getItem("todoList");
+    if (storedTodo) {
+      setTodo(storedTodo);
+    }
+  }, []);
+
+  const handleSaveClick = () => {
+    let todoList = JSON.parse(localStorage.getItem("todoList"));
+    if (!todoList) {
+      todoList = [];
+    }
+    todoList.push(todo);
+    console.log(todoList);
+    localStorage.setItem("todoList", JSON.stringify(todoList));
   };
 
   // 저장 이벤트 핸들러 함수 만들기
@@ -26,7 +43,9 @@ export const TodolistSave = () => {
           />
         </div>
         {/* 이벤트 핸들러 함수와 연결 */}
-        <button className="save">저장</button>
+        <button className="save" onClick={handleSaveClick}>
+          저장
+        </button>
       </div>
     </div>
   );
