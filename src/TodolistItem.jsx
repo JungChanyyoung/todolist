@@ -3,16 +3,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareCheck, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
-export const TodolistItems = () => {
+export const TodolistItem = ({ todo, id }) => {
   return (
-    <div className="todolist-container">
+    <div className="todolist-container" id={id}>
       <div className="checkbox">
         <FontAwesomeIcon icon={faSquareCheck} className="icon" />
-        <div className="text">호호</div>
+        <div className="text">{todo}</div>
       </div>
       <div>
         <FontAwesomeIcon icon={faPencil} className="icon" />
-        <FontAwesomeIcon icon={faTrashCan} className="icon" />
+        <span>
+          <FontAwesomeIcon icon={faTrashCan} className="icon delete" />
+        </span>
       </div>
     </div>
   );

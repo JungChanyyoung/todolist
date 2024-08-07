@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-export const TodolistSave = () => {
-  const [todo, setTodo] = useState([]);
+export const TodolistSave = ({ setTodos }) => {
+  const [todo, setTodo] = useState("");
+  // const inputRef = useRef(); //dom 조작
 
   const handleInpoutChange = (event) => {
     setTodo(event.target.value);
   };
-
-  useEffect(() => {
-    const storedTodo = localStorage.getItem("todoList");
-    if (storedTodo) {
-      setTodo(storedTodo);
-    }
-  }, []);
 
   const handleSaveClick = () => {
     let todoList = JSON.parse(localStorage.getItem("todoList"));
@@ -20,8 +14,9 @@ export const TodolistSave = () => {
       todoList = [];
     }
     todoList.push(todo);
-    console.log(todoList);
-    localStorage.setItem("todoList", JSON.stringify(todoList));
+    setTodos(todoList);
+    setTodo("");
+    // inputRef.current.value = "";
   };
 
   // 저장 이벤트 핸들러 함수 만들기
@@ -40,6 +35,8 @@ export const TodolistSave = () => {
             maxLength="16"
             placeholder="할 일을 입력해주세요"
             onChange={handleInpoutChange}
+            // ref={inputRef}
+            value={todo}
           />
         </div>
         {/* 이벤트 핸들러 함수와 연결 */}
