@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todos));
   }, [todos]);
+
   return (
     <div className="todolist">
       <TodolistHeader />

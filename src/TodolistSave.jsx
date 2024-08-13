@@ -9,6 +9,13 @@ export const TodolistSave = ({ setTodos }) => {
   };
 
   const handleSaveClick = () => {
+    const trimmedTodo = todo.trim();
+
+    if (trimmedTodo === "") {
+      alert("할일을 입력해주세요!");
+      return;
+    }
+
     let todoList = JSON.parse(localStorage.getItem("todoList"));
     if (!todoList) {
       todoList = [];

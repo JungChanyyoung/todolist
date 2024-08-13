@@ -3,7 +3,7 @@ import { TodolistItem } from "./TodolistItem";
 export const TodolistContent = ({ todos, setTodos }) => {
   // 이벤트 위임 방식
   const handleClick = (e) => {
-    const clickedId = parseInt(e.currentTarget.id);
+    const clickedId = parseInt(e.currentTarget.id, 10);
     let targetSvg = e.target;
 
     if (e.target.tagName === "path") {
@@ -16,6 +16,13 @@ export const TodolistContent = ({ todos, setTodos }) => {
       console.log(updatedTodos);
     }
     if (targetSvg.classList.contains("edit")) {
+      const newText = prompt("Enter the new text:", todos[clickedId]);
+      if (newText && newText.trim() !== "") {
+        const updatedTodos = todos.map((todo, index) =>
+          index === clickedId ? newText : todo
+        );
+        setTodos(updatedTodos);
+      }
     }
   };
 
