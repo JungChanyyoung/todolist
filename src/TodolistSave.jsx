@@ -26,6 +26,12 @@ export const TodolistSave = ({ setTodos }) => {
     // inputRef.current.value = "";
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSaveClick();
+    }
+  };
+
   // 저장 이벤트 핸들러 함수 만들기
   // 만약 localStorage.getItem('todoList')에 값이 없다면 빈배열로 set 해준다
   // localStorage에서 리스트를 가져온다
@@ -42,6 +48,7 @@ export const TodolistSave = ({ setTodos }) => {
             maxLength="16"
             placeholder="할 일을 입력해주세요"
             onChange={handleInpoutChange}
+            onKeyDown={handleKeyDown}
             // ref={inputRef}
             value={todo}
           />
