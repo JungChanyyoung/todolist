@@ -11,7 +11,7 @@ export const TodolistItem = ({ todo, id }) => {
         <div className="text">{todo}</div>
       </div>
       <div>
-        <FontAwesomeIcon icon={faPencil} className="icon" />
+        <FontAwesomeIcon icon={faPencil} className="icon edit" />
         <span>
           <FontAwesomeIcon icon={faTrashCan} className="icon delete" />
         </span>
